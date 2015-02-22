@@ -7,7 +7,7 @@ public class Statistics {
 	
 	public Statistics() {}
 	
-	void findLow (Student [] student) {
+	protected void findLow (Student [] student) {
 		for(int i = 0; i < 5; i++) {	// for 5 columns 
 			int lowest = student[i].getScores()[0];
 			
@@ -20,7 +20,7 @@ public class Statistics {
 		}
 	}
 	
-	void findHigh(Student [] student) {
+	protected void findHigh(Student [] student) {
 		for(int i = 0; i < 5; i++) {	// for 5 columns
 			int highest = student[i].getScores()[0];
 			
@@ -33,7 +33,7 @@ public class Statistics {
 		}
 	}
 	
-	void findAvg(Student [] student) {
+	protected void findAvg(Student [] student) {
 		for(int i = 0; i < 5; i++) {
 			float avg = (this.highScores[i] + this.lowScores[i])/2;
 			avgScores[i] = avg;

@@ -18,6 +18,8 @@ public abstract class BridgeClassRecords implements ClassRecords{
 	}
 	
 	public void PrintGrades() {
+		Util util = new Util();
+		util.displayGrades("records.txt");
 		
 	}
 }

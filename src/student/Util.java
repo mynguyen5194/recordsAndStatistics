@@ -6,55 +6,63 @@ import java.util.Arrays;
 public class Util {
 	public Util() {}
 	
-	public  Student [] readFile(String fileName, Student [] student) {
+	protected int countLine(String fileName) throws IOException {
+		FileReader file = new FileReader(fileName);
+		BufferedReader buffer = new BufferedReader(file);
+		int numberOfLine = 0;
+		
+		while(buffer.readLine() != null)
+			numberOfLine++;
+		
+		buffer.close();
+		
+		return numberOfLine;
+	}
+	
+	public Student [] readFile(String fileName, Student [] student) {	// student also has 40
 		try {
 			FileReader file = new FileReader(fileName);
 			BufferedReader buffer = new BufferedReader(file);
 			
 			boolean eof = false;
+			
 			while(!eof) {
-				String line = buffer.readLine();
+				String line = buffer.readLine();					// Read each line
 				if(line == null) {
 					eof = true;
 				}
-				else {	// Keep reading
-					int scoreArr[] = new int[5];	// Create a new scoreArr to store 5 scores
-					Arrays.fill(scoreArr, -1);
-					
+				else {	// Keep reading (have one line already)
 					StringTokenizer tokenizer = new StringTokenizer(line);
-					while(tokenizer.hasMoreTokens()) {
-						String token = tokenizer.nextToken();	// A new String token
-						
-						for(int i = 0; i < student.length; i++) {
-							// Save the SID
-							if(token.length() == 4) {
-								int studentID = Integer.parseInt(token);
-								student[i].setSID(studentID);
-							}
-						
-							// Save the scores to a scoreArr array
-							else {
-								int scores = Integer.parseInt(token);
-								if(scoreArr[i] != -1) {
-									scoreArr[i] = scores;
+					int [] scoreArr = new int[4]; 	// create an scoreArr array to store 4 scores
+					
+					@attendtion 
+					for (int j = 0; j < student.length; j++) { 				
+						for (int i = 0; i < scoreArr.length; i++) {
+							while(tokenizer.hasMoreTokens()) {
+								String newLine = tokenizer.nextToken();
+							 
+								if(newLine.length() == 4) {
+									int studentID = Integer.parseInt(newLine);
+									student[j].setSID(studentID);	// save the studentID to student[i];
 								}
 								else {
-									
+									int scores = Integer.parseInt(newLine);
+									scoreArr[i] = scores;	// put each scores into one scoreArr
 								}
-							}		
-						}
-						 
-//							student[i].setScores(scoreArr);	// Save the scoreArr array to the score field
-					}
-					
+							}
+						}	// done for one line -- move to the next line
+						student[j].setScores(scoreArr);	// save scoreArr to the student[i].setScores(scoreArr)
+					} 
 				}
+					
 			}
-			
 			buffer.close();
+		
 		}
 		catch (IOException e) {
 			System.out.printf("Error -- " + e.toString());
 		}
+		return student;
 	}
 	
 	public void displayGrades(String fileName) {

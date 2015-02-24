@@ -1,7 +1,7 @@
 package student;
 import java.io.*;
 import java.util.StringTokenizer;
-import java.util.Arrays;
+
 
 public class Util {
 	public Util() {}
@@ -27,37 +27,35 @@ public class Util {
 			boolean eof = false;
 			
 			while(!eof) {
-				String line = buffer.readLine();					// Read each line
-				if(line == null) {
-					eof = true;
-				}
-				else {	// Keep reading (have one line already)
-					StringTokenizer tokenizer = new StringTokenizer(line);
-					int [] scoreArr = new int[4]; 	// create an scoreArr array to store 4 scores
-					
-					@attendtion 
-					for (int j = 0; j < student.length; j++) { 				
-						for (int i = 0; i < scoreArr.length; i++) {
-							while(tokenizer.hasMoreTokens()) {
+				for (int r = 0; r < student.length; r++) { 		// 40			
+					String line = buffer.readLine();					// Read each line
+					if(line == null) {
+						eof = true;
+					}
+					else {	// Keep reading (have one line already)
+						StringTokenizer tokenizer = new StringTokenizer(line);
+						int [] scoreArr = new int[5]; 	// create an scoreArr array to store 4 scores		
+						
+						while(tokenizer.hasMoreTokens()) {
+							for (int c = 0; c < scoreArr.length; c++) {
 								String newLine = tokenizer.nextToken();
 							 
 								if(newLine.length() == 4) {
 									int studentID = Integer.parseInt(newLine);
-									student[j].setSID(studentID);	// save the studentID to student[i];
+									student[r].setSID(studentID);	// save the studentID to student[i];
+									break;
 								}
 								else {
 									int scores = Integer.parseInt(newLine);
-									scoreArr[i] = scores;	// put each scores into one scoreArr
+									scoreArr[c] = scores;	// put each scores into one scoreArr					
 								}
 							}
 						}	// done for one line -- move to the next line
-						student[j].setScores(scoreArr);	// save scoreArr to the student[i].setScores(scoreArr)
+						student[r].setScores(scoreArr);	// save scoreArr (5 scores) to the student[i]
 					} 
-				}
-					
+				}	
 			}
 			buffer.close();
-		
 		}
 		catch (IOException e) {
 			System.out.printf("Error -- " + e.toString());

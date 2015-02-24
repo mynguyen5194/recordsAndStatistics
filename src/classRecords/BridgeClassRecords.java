@@ -1,12 +1,12 @@
 package classRecords;
 import student.*;
 
-public abstract class BridgeClassRecords implements ClassRecords{
-	Student [] student = new Student[40];
+public abstract class BridgeClassRecords implements ClassRecords{	
+	Student [] student = new Student[15];
 	
 	public void ReadFile(String fileName) {
 		Util myUtil = new Util();
-		myUtil.readFile("records.txt", student);
+		student = myUtil.readFile(fileName, student);
 	}
 	
 	public void ComputeStats() {

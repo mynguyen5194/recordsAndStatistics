@@ -19,14 +19,15 @@ public class Util {
 		return numberOfLine;
 	}
 	
-	public Student readFile(String fileName, Student student) {	// student also has 40
+	public Student [] readFile(String fileName, Student student[]) {	// student also has 40
 		try {
 			FileReader file = new FileReader(fileName);
 			BufferedReader buffer = new BufferedReader(file);
 			
 			boolean eof = false;
 			
-			while(!eof) {			
+			while(!eof) {
+				for (int r = 0; r < student.length; r++) { 		// 40			
 					String line = buffer.readLine();					// Read each line
 					if(line == null) {
 						eof = true;
@@ -41,7 +42,7 @@ public class Util {
 							 
 								if(newLine.length() == 4) {
 									int studentID = Integer.parseInt(newLine);
-									student.setSID(studentID);		// save the studentID to student[i];
+									student[r].setSID(studentID);	// save the studentID to student[i];
 									break;
 								}
 								else {
@@ -50,7 +51,8 @@ public class Util {
 								}
 							}
 						}	// done for one line -- move to the next line
-						student.setScores(scoreArr);
+						student[r].setScores(scoreArr);	// save scoreArr (5 scores) to the student[i]
+					} 
 				}	
 			}
 			buffer.close();

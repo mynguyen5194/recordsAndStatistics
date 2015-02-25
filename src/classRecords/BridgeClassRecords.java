@@ -7,12 +7,18 @@ public abstract class BridgeClassRecords implements ClassRecords{
 	public void ReadFile(String fileName) {
 		for(int i = 0; i < student.length; i++) {
 			student[i] = new Student();
+		}
 		
 		Util myUtil = new Util();
-		student[i] = myUtil.readFile(fileName, student[i]);
+		student = myUtil.readFile(fileName, student);
 		
-		System.out.printf("SID: " + student[i].getSID() + "-- \n");
+		for(int j = 0; j < student.length; j++) {
+			System.out.printf("\nSID: " + student[j].getSID() + " -- ");
+			for(int k = 0; k < 5; k++) {
+				System.out.printf("  " + student[j].getScores()[k] + "  ");
+			}
 		}
+		
 	}
 	
 	public void ComputeStats() {

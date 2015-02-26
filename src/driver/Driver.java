@@ -8,7 +8,7 @@ public class Driver extends BridgeClassRecords{
 		
 		Driver driver = new Driver();
 		
-		driver.PrintGrades();
+//		driver.PrintGrades();
 		driver.ReadFile("records.txt");
 
 	}

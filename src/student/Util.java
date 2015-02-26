@@ -58,10 +58,8 @@ public class Util {
 			buffer.close();
 		}
 		catch (IOException e) {
+// IMPLEMENT THE CATCH 
 			System.out.printf("Error -- " + e.toString());
-		}
-		catch (NullPointerException ex) {
-			System.out.printf("\nOMG --" + ex.toString());
 		}
 		
 		return student;

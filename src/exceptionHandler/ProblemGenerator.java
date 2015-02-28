@@ -19,15 +19,14 @@ public class ProblemGenerator {
 		this.fileName = fileName;
 	}
 
-	public boolean openFile() throws Repair
+	public boolean openFile() throws Repair, IOException
 	{
 		FileInputStream a1 = null;
 		boolean flag = false;
 		try {
 			a1 = new FileInputStream(fileName);
-			System.out.println("Now it is done!");
+			System.out.println("Now it is done!\n");
 			flag = true;
-			
 		}
 		catch(FileNotFoundException f)
 		{
@@ -37,7 +36,7 @@ public class ProblemGenerator {
 		{			
 			
 		}	
-		
+		a1.close();
 		return flag;	
 	}	
 }

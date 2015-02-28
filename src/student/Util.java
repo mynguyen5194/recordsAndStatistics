@@ -4,37 +4,42 @@ import java.util.*;
 import exceptionHandler.*;
 
 public class Util {
-	public Util() {}
+	private int numberOfLine;
+	public Util() {
+		numberOfLine = 0;
+	}
 	
-//	protected int countLine(String fileName) throws IOException {
-//		FileReader file = new FileReader(fileName);
-//		BufferedReader buffer = new BufferedReader(file);
-//		int numberOfLine = 0;
-//		
-//		while(buffer.readLine() != null)
-//			numberOfLine++;
-//		
-//		buffer.close();
-//		
-//		return numberOfLine;
-//	}
+	public int getNumberOfLine() {
+		return numberOfLine;
+	}
+
+
+	public void setNumberOfLine(int numLine) {
+		this.numberOfLine = numLine;
+	}
+
+
+	public void countLine(String fileName) throws IOException {
+		FileReader file = new FileReader(fileName);
+		BufferedReader buffer = new BufferedReader(file);
+		
+		while(buffer.readLine() != null)
+			numberOfLine++;
+		
+		buffer.close();
+	}
 	
-	public Student [] readFile(String fileName, Student student[], boolean displayData) {
+	public Student [] readFile(String fileName, Student student[]) {
 		boolean problemFixed = false;
 		System.out.println("Inside main");
-		ProblemGenerator myproblem = new ProblemGenerator("filenamethatdoesnotexist.txt");
+		ProblemGenerator problem = new ProblemGenerator("filenamethatdoesnotexist.txt");
 		
 		do {
 			try {
-				problemFixed = myproblem.openFile();
+				problemFixed = problem.openFile();
 				
 				FileReader file = new FileReader(fileName);
 				BufferedReader buffer = new BufferedReader(file);
-				
-				if(displayData == true) {
-					System.out.printf(" SID\t\t  Scores");
-				}
-				
 				boolean eof = false;
 				
 				while(!eof) {
@@ -52,18 +57,12 @@ public class Util {
 									String newLine = tokenizer.nextToken();
 								 
 									if(newLine.length() == 4) {
-										if(displayData == true) {
-											System.out.printf("\n " + newLine + "\t");
-										}
 										int studentID = Integer.parseInt(newLine);
 										student[r].setSID(studentID);	// save the studentID to student[i];
 										break;
 									}
 									else {
 										int scores = Integer.parseInt(newLine);
-										if(displayData == true) {
-											System.out.printf("%5d", scores);
-										}
 										scoreArr[c] = scores;	// put each scores into one scoreArr					
 									}
 								}
@@ -75,13 +74,12 @@ public class Util {
 				buffer.close();
 			}
 				
-			catch(IOException e) {
-					System.out.printf("Error -- " + e.toString());
+			catch(IOException err) {
+					System.out.printf("Error -- " + err.toString());
 			}
 			catch(Repair e)
 			{
-				
-					myproblem.setFileName(e.fixProblemReadFromConsole());
+					problem.setFileName(e.fixProblemReadFromConsole());
 			}
 			
 		}while(problemFixed == false);
@@ -89,4 +87,41 @@ public class Util {
 		return student;
 	}
 	
+	public void displayGrades(String fileName) {
+ 		try {
+ 			FileReader file = new FileReader(fileName);
+ 			BufferedReader buffer = new BufferedReader(file);
+ 			
+ 			System.out.printf("    SID\t\t\t\tScores");
+ 			
+ 			boolean eof = false;
+ 			while (!eof) {
+ 				String line = buffer.readLine();
+ 				
+ 				if(line == null) {
+ 					eof = true;
+ 				}
+ 				else {
+ 					StringTokenizer tokenizer = new StringTokenizer(line);
+ 					while(tokenizer.hasMoreTokens()) {
+ 						String newLine = tokenizer.nextToken();
+ 						
+ 						if(newLine.length() == 4) {
+ 							System.out.printf("\n %7s \t", newLine);
+ 						}
+ 						else {
+ 							int x = Integer.parseInt(newLine);
+ 							System.out.printf("%7d", x);
+ 						}
+ 					}
+ 					
+ 				}
+ 			
+ 			}
+ 			buffer.close();
+ 		}
+ 		catch (IOException e) {
+ 			System.out.printf("Error -- " + e.toString());
+ 		}
+ 	}
 }

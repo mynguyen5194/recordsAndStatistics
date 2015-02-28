@@ -1,8 +1,8 @@
 package classRecords;
 import student.*;
 
-public abstract class BridgeClassRecords implements ClassRecords{	
-	Student [] student = new Student[15];
+public abstract class BridgeClassRecords implements ClassRecords{
+	Student [] student = new Student[40];
 	
 	public void ReadFile(String fileName) {
 		for(int i = 0; i < student.length; i++) {
@@ -10,8 +10,7 @@ public abstract class BridgeClassRecords implements ClassRecords{
 		}
 		
 		Util myUtil = new Util();
-		student = myUtil.readFile(fileName, student, false);
-		
+		student = myUtil.readFile(fileName, student);
 	}
 	
 	public void ComputeStats() {
@@ -24,6 +23,6 @@ public abstract class BridgeClassRecords implements ClassRecords{
 	
 	public void PrintGrades(String fileName) {
 		Util util = new Util();
-		util.readFile(fileName, student, true);
+		util.displayGrades(fileName);
 	}
 }

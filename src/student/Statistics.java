@@ -40,7 +40,6 @@ public class Statistics {
 			for(int j = 0; j < student.length; j++) {
 				total += student[j].getScores()[i];
 			}
-			
 			float average = (float) (total/(student.length));
 			avgScores[i] = average;
 		}
@@ -49,27 +48,27 @@ public class Statistics {
 	// Print 5 lowest scores
 	public void printLowScores(Student [] student) {
 		this.findLow(student);
-		System.out.printf("\nLow Scores: ");
+		System.out.printf("\nLow Scores:   ");
 		for(int i = 0; i < lowScores.length; i++) {
-			System.out.printf("  " + lowScores[i] + "  ");
+			System.out.printf("%8d",lowScores[i]);
 		}
 	}
 	
 	// Print 5 highest scores
 	public void printHighScores(Student [] student) {
 		this.findHigh(student);
-		System.out.printf("\nHigh Scores: ");
+		System.out.printf("\nHigh Scores:    ");
 		for(int i = 0; i < highScores.length; i++) {
-			System.out.printf("  " + highScores[i] + "  ");
+			System.out.printf("%7d", highScores[i]);
 		}
 	}
 	
 	// Print 5 average scores
 	public void printAvgScores(Student [] student) {
 		this.findAvg(student);
-		System.out.printf("\nAverage: ");
+		System.out.printf("\nAverage:\t");
 		for(int i = 0; i < avgScores.length; i++) {
-			System.out.printf("  %1.2f  ", avgScores[i]);
+			System.out.printf("  %4.1f  ", avgScores[i]);
 		}
 	}
 }

@@ -23,6 +23,7 @@ public class Util {
 		boolean problemFixed = false;
 		System.out.println("Inside main");
 		ProblemGenerator myproblem = new ProblemGenerator("filenamethatdoesnotexist.txt");
+		
 		do {
 			try {
 				problemFixed = myproblem.openFile();

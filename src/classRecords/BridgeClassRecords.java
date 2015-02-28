@@ -25,7 +25,7 @@ public abstract class BridgeClassRecords implements ClassRecords{
 		Statistics stat = new Statistics();
 		
 		stat.printHighScores();
-		stat.printLowScores();
+		stat.printLowScores(student);
 		stat.printAvgScores();
 	}
 	

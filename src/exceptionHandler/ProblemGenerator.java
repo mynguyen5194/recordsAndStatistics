@@ -27,6 +27,7 @@ public class ProblemGenerator {
 			a1 = new FileInputStream(fileName);
 			System.out.println("Now it is done!");
 			flag = true;
+			
 		}
 		catch(FileNotFoundException f)
 		{
@@ -36,6 +37,7 @@ public class ProblemGenerator {
 		{			
 			
 		}	
+		
 		return flag;	
 	}	
 }

@@ -1,18 +1,16 @@
 package exceptionHandler;
-
 import java.io.*;
 
 public class ProblemGenerator {
 	private String fileName;
-
-	ProblemGenerator() {
-	}
-
+	
+	ProblemGenerator() { }
+	
 	public ProblemGenerator(String fileName) {
 		super();
 		this.fileName = fileName;
 	}
-
+	
 	public String getFileName() {
 		return fileName;
 	}
@@ -21,19 +19,23 @@ public class ProblemGenerator {
 		this.fileName = fileName;
 	}
 
-	boolean openFile() throws Repair {
+	public boolean openFile() throws Repair
+	{
 		FileInputStream a1 = null;
 		boolean flag = false;
 		try {
 			a1 = new FileInputStream(fileName);
 			System.out.println("Now it is done!");
 			flag = true;
-		} catch (FileNotFoundException f) {
-			throw new Repair();
-		} finally {
-
 		}
-		
-		return flag;
-	}
+		catch(FileNotFoundException f)
+		{
+			throw new Repair();
+		}
+		finally 
+		{			
+			
+		}	
+		return flag;	
+	}	
 }

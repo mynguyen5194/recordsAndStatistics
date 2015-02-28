@@ -1,14 +1,14 @@
-package exceptionHandling;
+package exceptionHandler;
 
 import java.io.*;
 
-public class CreateProblem {
+public class ProblemGenerator {
 	private String fileName;
 
-	CreateProblem() {
+	ProblemGenerator() {
 	}
 
-	public CreateProblem(String fileName) {
+	public ProblemGenerator(String fileName) {
 		super();
 		this.fileName = fileName;
 	}
@@ -21,7 +21,7 @@ public class CreateProblem {
 		this.fileName = fileName;
 	}
 
-	boolean openFile() throws FixProblems {
+	boolean openFile() throws Repair {
 		FileInputStream a1 = null;
 		boolean flag = false;
 		try {
@@ -29,10 +29,11 @@ public class CreateProblem {
 			System.out.println("Now it is done!");
 			flag = true;
 		} catch (FileNotFoundException f) {
-			throw new FixProblems();
+			throw new Repair();
 		} finally {
 
 		}
+		
 		return flag;
 	}
 }

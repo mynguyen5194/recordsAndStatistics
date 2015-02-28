@@ -1,29 +1,29 @@
-package exceptionHandling;
+package exceptionHandler;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
-public class FixProblems extends Exception {
+public class Repair extends Exception {
 	private int errorno;
 	private String errormsg;
 	
-	public FixProblems() {
+	public Repair() {
 		super();
 		printmyproblem();
 	}
 	
-	public FixProblems(String errormsg) {
+	public Repair(String errormsg) {
 		super();
 		this.errormsg = errormsg;
 		printmyproblem();
 	}
 	
-	public FixProblems(int errorno) {
+	public Repair(int errorno) {
 		super();
 		this.errorno = errorno;
 		printmyproblem();
 	}
 	
-	public FixProblems(int errorno, String errormsg) {
+	public Repair(int errorno, String errormsg) {
 		super();
 		this.errorno = errorno;
 		this.errormsg = errormsg;
@@ -52,7 +52,7 @@ public class FixProblems extends Exception {
 
 	public String fixProblemReadFromConsole()
 	{
-		String a = "Z:\\JavaPrograms\\SelfHealingSoftware\\bin\\abc.txt";
+		String a = "/Users/mynguyen5194/Desktop/abc.txt";
 		System.out.println("got here --> fixProblemReadFromConsole");
 		return a;
 	}

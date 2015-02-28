@@ -46,7 +46,7 @@ public class Repair extends Exception {
 	}
 	
 	public void printmyproblem() {
-		System.out.println("FixProblems [errorno=" + errorno + ", errormsg=" + errormsg); 
+		System.out.println("FixProblems [errorno = " + errorno + ", errormsg = " + errormsg + "]"); 
 	}
 
 	public String fixProblemReadFromConsole()

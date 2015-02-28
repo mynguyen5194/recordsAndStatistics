@@ -8,9 +8,8 @@ public class Driver extends BridgeClassRecords implements ClassRecords{
 		
 		Driver driver = new Driver();
 		
-//		driver.PrintGrades();
 		driver.ReadFile("records.txt");
-		
+		driver.PrintGrades("records.txt");
 		driver.ComputeStats();
 		
 	}

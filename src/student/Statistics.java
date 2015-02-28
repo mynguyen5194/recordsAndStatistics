@@ -12,8 +12,8 @@ public class Statistics {
 			int lowest = student[i].getScores()[0];
 			
 			for(int j = 0; j < student.length; j++) {	// for student.length rows
-				if(student[i].getScores()[j] < lowest) {
-					lowest = student[i].getScores()[j];
+				if(student[j].getScores()[i] < lowest) {
+					lowest = student[j].getScores()[i];
 				}
 			}
 			lowScores[i] = lowest;
@@ -25,8 +25,8 @@ public class Statistics {
 			int highest = student[i].getScores()[0];
 			
 			for(int j = 0; j < student.length; j++) {
-				if(student[i].getScores()[j] > highest) {
-					highest = student[i].getScores()[j];
+				if(student[j].getScores()[i] > highest) {
+					highest = student[j].getScores()[i];
 				}
 			}
 			highScores[i] = highest;
@@ -35,14 +35,20 @@ public class Statistics {
 	
 	public void findAvg(Student [] student) {
 		for(int i = 0; i < 5; i++) {
-			float avg = (this.highScores[i] + this.lowScores[i])/2;
-			avgScores[i] = avg;
+			double total = 0;
+			
+			for(int j = 0; j < student.length; j++) {
+				total += student[j].getScores()[i];
+			}
+			
+			float average = (float) (total/(student.length));
+			avgScores[i] = average;
 		}
 	}
 	
 	// Print 5 lowest scores
 	public void printLowScores(Student [] student) {
-//		this.findLow(student);
+		this.findLow(student);
 		System.out.printf("\nLow Scores: ");
 		for(int i = 0; i < lowScores.length; i++) {
 			System.out.printf("  " + lowScores[i] + "  ");
@@ -50,7 +56,8 @@ public class Statistics {
 	}
 	
 	// Print 5 highest scores
-	public void printHighScores() {
+	public void printHighScores(Student [] student) {
+		this.findHigh(student);
 		System.out.printf("\nHigh Scores: ");
 		for(int i = 0; i < highScores.length; i++) {
 			System.out.printf("  " + highScores[i] + "  ");
@@ -58,10 +65,11 @@ public class Statistics {
 	}
 	
 	// Print 5 average scores
-	public void printAvgScores() {
+	public void printAvgScores(Student [] student) {
+		this.findAvg(student);
 		System.out.printf("\nAverage: ");
 		for(int i = 0; i < avgScores.length; i++) {
-			System.out.printf("  " + avgScores[i] + "  ");
+			System.out.printf("  %1.2f  ", avgScores[i]);
 		}
 	}
 }

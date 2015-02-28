@@ -19,7 +19,7 @@ public class Util {
 //		return numberOfLine;
 //	}
 	
-	public Student [] readFile(String fileName, Student student[]) {	// student also has 40
+	public Student [] readFile(String fileName, Student student[], boolean displayData) {
 		boolean problemFixed = false;
 		System.out.println("Inside main");
 		ProblemGenerator myproblem = new ProblemGenerator("filenamethatdoesnotexist.txt");
@@ -30,6 +30,10 @@ public class Util {
 				
 				FileReader file = new FileReader(fileName);
 				BufferedReader buffer = new BufferedReader(file);
+				
+				if(displayData == true) {
+					System.out.printf(" SID\t\t  Scores");
+				}
 				
 				boolean eof = false;
 				
@@ -48,12 +52,18 @@ public class Util {
 									String newLine = tokenizer.nextToken();
 								 
 									if(newLine.length() == 4) {
+										if(displayData == true) {
+											System.out.printf("\n " + newLine + "\t");
+										}
 										int studentID = Integer.parseInt(newLine);
 										student[r].setSID(studentID);	// save the studentID to student[i];
 										break;
 									}
 									else {
 										int scores = Integer.parseInt(newLine);
+										if(displayData == true) {
+											System.out.printf("%5d", scores);
+										}
 										scoreArr[c] = scores;	// put each scores into one scoreArr					
 									}
 								}
@@ -70,7 +80,8 @@ public class Util {
 			}
 			catch(Repair e)
 			{
-				myproblem.setFileName(e.fixProblemReadFromConsole()); 
+				
+					myproblem.setFileName(e.fixProblemReadFromConsole());
 			}
 			
 		}while(problemFixed == false);
@@ -78,41 +89,4 @@ public class Util {
 		return student;
 	}
 	
-	public void displayGrades(String fileName) {
-		try {
-			FileReader file = new FileReader(fileName);
-			BufferedReader buffer = new BufferedReader(file);
-			
-			System.out.printf(" SID\t\t  Scores");
-			
-			boolean eof = false;
-			while (!eof) {
-				String line = buffer.readLine();
-				
-				if(line == null) {
-					eof = true;
-				}
-				else {
-					StringTokenizer tokenizer = new StringTokenizer(line);
-					while(tokenizer.hasMoreTokens()) {
-						String newLine = tokenizer.nextToken();
-						
-						if(newLine.length() == 4) {
-							System.out.printf("\n " + newLine + "\t");
-						}
-						else {
-							int x = Integer.parseInt(newLine);
-							System.out.printf("%5d", x);
-						}
-					}
-					
-				}
-			
-			}
-			buffer.close();
-		}
-		catch (IOException e) {
-			System.out.printf("Error -- " + e.toString());
-		}
-	}
 }

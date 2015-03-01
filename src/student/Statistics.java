@@ -59,7 +59,7 @@ public class Statistics {
 		this.findHigh(student);
 		System.out.printf("\nHigh Scores:    ");
 		for(int i = 0; i < highScores.length; i++) {
-			System.out.printf("%7d", highScores[i]);
+			System.out.printf("%8d", highScores[i]);
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class Statistics {
 		this.findAvg(student);
 		System.out.printf("\nAverage:\t");
 		for(int i = 0; i < avgScores.length; i++) {
-			System.out.printf("  %4.1f  ", avgScores[i]);
+			System.out.printf("  %5.1f  ", avgScores[i]);
 		}
 	}
 }

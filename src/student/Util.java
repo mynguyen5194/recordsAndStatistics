@@ -5,28 +5,13 @@ import exceptionHandler.*;
 
 public class Util {
 	private int numberOfLine;
+	
 	public Util() {
 		numberOfLine = 0;
 	}
 	
 	public int getNumberOfLine() {
 		return numberOfLine;
-	}
-
-
-	public void setNumberOfLine(int numLine) {
-		this.numberOfLine = numLine;
-	}
-
-
-	public void countLine(String fileName) throws IOException {
-		FileReader file = new FileReader(fileName);
-		BufferedReader buffer = new BufferedReader(file);
-		
-		while(buffer.readLine() != null)
-			numberOfLine++;
-		
-		buffer.close();
 	}
 	
 	public Student [] readFile(String fileName, Student student[]) {
@@ -44,11 +29,13 @@ public class Util {
 				
 				while(!eof) {
 					for (int r = 0; r < student.length; r++) { 		// 40			
+						
 						String line = buffer.readLine();					// Read each line
 						if(line == null) {
 							eof = true;
 						}
 						else {	// Keep reading (have one line already)
+							numberOfLine++;
 							StringTokenizer tokenizer = new StringTokenizer(line);
 							int [] scoreArr = new int[5]; 	// create an scoreArr array to store 4 scores		
 							
@@ -72,6 +59,7 @@ public class Util {
 					}	
 				}
 				buffer.close();
+				
 			}
 				
 			catch(IOException err) {
@@ -92,7 +80,7 @@ public class Util {
  			FileReader file = new FileReader(fileName);
  			BufferedReader buffer = new BufferedReader(file);
  			
- 			System.out.printf("    SID\t\t\t\tScores");
+ 			System.out.printf("    SID\t\t\t\t    Scores");
  			
  			boolean eof = false;
  			while (!eof) {
@@ -111,7 +99,7 @@ public class Util {
  						}
  						else {
  							int x = Integer.parseInt(newLine);
- 							System.out.printf("%7d", x);
+ 							System.out.printf("%8d", x);
  						}
  					}
  					

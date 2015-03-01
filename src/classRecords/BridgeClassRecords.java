@@ -1,3 +1,10 @@
+/*
+ * BridgeClassRecords class contains an int size and a student array
+ * which is initialized to 40.
+ * This class implements the ReadFile, ComputeStats, and PrintGrades
+ * for the ClassRecords class
+ */
+
 package classRecords;
 import student.*;
 
@@ -15,36 +22,29 @@ public abstract class BridgeClassRecords implements ClassRecords{
 	
 	public void ReadFile(String fileName) {
 		for(int i = 0; i < student.length; i++) {
-			student[i] = new Student();
+			student[i] = new Student();	// create new student
 		}
 		
 		Util myUtil = new Util();
-		student = myUtil.readFile(fileName, student);
+		student = myUtil.readFile(fileName, student);	// save the return value from readFile to student array
 		
-		this.setSize(myUtil.getNumberOfLine());
-		System.out.printf("Number Of Line: " + myUtil.getNumberOfLine() + "\n");
+		this.setSize(myUtil.getNumberOfLine());	// get the number of line after reading the file
 	}
 	
 	public void ComputeStats() {
 		Statistics stat = new Statistics();
 		
-		if(this.getSize() <= student.length) {
-			Student [] newStudent = new Student[this.getSize()];
+		// compute the statistics if the file contains 40 lines or less (<= 40 students)
+		if(this.getSize() <= student.length) {	
+			stat.printHighScores(student, this.getSize());
+			stat.printLowScores(student, this.getSize());
+			stat.printAvgScores(student, this.getSize());
 			
-			for(int i = 0; i < newStudent.length; i++) {
-				newStudent[i] = new Student();
-			}
-			
-			System.arraycopy(student, 0, newStudent, 0, this.getSize());
-			
-			stat.printHighScores(newStudent);
-			stat.printLowScores(newStudent);
-			stat.printAvgScores(newStudent);
 		}
-		else {
-			stat.printHighScores(student);
-			stat.printLowScores(student);
-			stat.printAvgScores(student);
+		else {	// Otherwise, compute the statistics for 40 students and eliminate the rest
+			stat.printHighScores(student, student.length);
+			stat.printLowScores(student, student.length);
+			stat.printAvgScores(student, student.length);
 		}
 	}
 	

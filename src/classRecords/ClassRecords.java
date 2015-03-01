@@ -1,3 +1,7 @@
+/*
+ * classRecords interface
+ */
+
 package classRecords;
 
 public interface ClassRecords {

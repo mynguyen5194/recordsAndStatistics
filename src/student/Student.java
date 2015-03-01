@@ -1,3 +1,8 @@
+/*
+ * Student class includes student ID number and an array
+ * of 5 elements for each score
+ */
+
 package student;
 
 public class Student {
@@ -28,8 +33,10 @@ public class Student {
 	}
 	
 	public void printScores() {
+		StringBuffer string = new StringBuffer("");
 		for(int i = 0; i < this.scores.length; i ++) {
-			System.out.printf("  " + scores[i] + "  ");
+			string.append("  " + scores[i] + "  ");
+			System.out.println(string);
 		}
 	}
 }

@@ -1,10 +1,16 @@
+/*
+ * Util class is mainly used to read and display the data from the file by using
+ * exceptional handling technique
+ * This class also has a numberOfLine 
+ */
+
 package student;
 import java.io.*;
 import java.util.*;
 import exceptionHandler.*;
 
 public class Util {
-	private int numberOfLine;
+	private int numberOfLine;	// number of line in the file
 	
 	public Util() {
 		numberOfLine = 0;
@@ -16,7 +22,7 @@ public class Util {
 	
 	public Student [] readFile(String fileName, Student student[]) {
 		boolean problemFixed = false;
-		System.out.println("Inside main");
+		System.out.printf("Inside main\n");
 		ProblemGenerator problem = new ProblemGenerator("filenamethatdoesnotexist.txt");
 		
 		do {
@@ -28,38 +34,37 @@ public class Util {
 				boolean eof = false;
 				
 				while(!eof) {
-					for (int r = 0; r < student.length; r++) { 		// 40			
+					for (int r = 0; r < student.length; r++) {	// for student.length rows			
 						
-						String line = buffer.readLine();					// Read each line
+						String line = buffer.readLine();		// Read each line
 						if(line == null) {
 							eof = true;
 						}
 						else {	// Keep reading (have one line already)
-							numberOfLine++;
+							numberOfLine++;		// increment the line number
 							StringTokenizer tokenizer = new StringTokenizer(line);
-							int [] scoreArr = new int[5]; 	// create an scoreArr array to store 4 scores		
+							int [] scoreArr = new int[5]; 	// create an scoreArr array to store 5 scores		
 							
 							while(tokenizer.hasMoreTokens()) {
-								for (int c = 0; c < scoreArr.length; c++) {
+								for (int c = 0; c < scoreArr.length; c++) {		// basically for 5 columns
 									String newLine = tokenizer.nextToken();
 								 
-									if(newLine.length() == 4) {
+									if(newLine.length() == 4) {		// student ID has 4 characters
 										int studentID = Integer.parseInt(newLine);
 										student[r].setSID(studentID);	// save the studentID to student[i];
 										break;
 									}
-									else {
+									else {	// the rest are scores
 										int scores = Integer.parseInt(newLine);
-										scoreArr[c] = scores;	// put each scores into one scoreArr					
+										scoreArr[c] = scores;	// save each scores into one scoreArr					
 									}
 								}
 							}	// done for one line -- move to the next line
-							student[r].setScores(scoreArr);	// save scoreArr (5 scores) to the student[i]
+							student[r].setScores(scoreArr);	// save scoreArr (5 scores) to the student[r]
 						} 
 					}	
 				}
 				buffer.close();
-				
 			}
 				
 			catch(IOException err) {
@@ -102,9 +107,7 @@ public class Util {
  							System.out.printf("%8d", x);
  						}
  					}
- 					
  				}
- 			
  			}
  			buffer.close();
  		}

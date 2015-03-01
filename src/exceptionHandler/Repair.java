@@ -1,5 +1,4 @@
 package exceptionHandler;
-//import java.util.Arrays;
 
 public class Repair extends Exception {
 	private int errorno;

@@ -50,7 +50,11 @@ public class Repair extends Exception {
 
 	public String fixProblemReadFromConsole()
 	{
+//		String a = "Z:\\JavaPrograms\\SelfHealingSoftware\\bin\\abc.txt";	// for Windows
+		
+		// replace the following line if compile on IOS
 		String a = "/Users/mynguyen5194/Desktop/abc.txt";
+		
 		System.out.println("got here --> fixProblemReadFromConsole");
 		return a;
 	}
